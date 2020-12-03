@@ -12,14 +12,14 @@ const categories = {
   },
 
   images: {
-    0: '../src/assets/images/categories/actionA.jpg',
-    1: '../src/assets/images/categories/actionB.jpg',
-    2: '../src/assets/images/categories/actionC.jpg',
-    3: '../src/assets/images/categories/adjective.jpg',
-    4: '../src/assets/images/categories/animalA.jpg',
-    5: '../src/assets/images/categories/animalB.jpg',
-    6: '../src/assets/images/categories/clothes.jpg',
-    7: '../src/assets/images/categories/emotion.jpg',
+    0: '../categories/actionA.jpg',
+    1: '../categories/actionB.jpg',
+    2: '../categories/actionC.jpg',
+    3: '../categories/adjective.jpg',
+    4: '../categories/animalA.jpg',
+    5: '../categories/animalB.jpg',
+    6: '../categories/clothes.jpg',
+    7: '../categories/emotion.jpg',
   },
 
   isHeadPage: true,
