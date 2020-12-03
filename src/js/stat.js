@@ -1,7 +1,7 @@
 const statistics = {
   setLocalStorage() {
     const request = new XMLHttpRequest();
-    request.open('GET', 'cards.json');
+    request.open('GET', '../src/js/cards.json');
     request.send();
 
     const words = [];

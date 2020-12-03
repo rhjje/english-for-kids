@@ -23,22 +23,22 @@ const playGame = {
     // add diffents sounds
     this.correctAnswer = document.createElement('audio');
     const sourceCorrect = document.createElement('source');
-    sourceCorrect.src = `assets/sounds/correct.mp3`;
+    sourceCorrect.src = `../src/assets/sounds/correct.mp3`;
     this.correctAnswer.append(sourceCorrect);
 
     this.wrongAnswer = document.createElement('audio');
     const sourceWrong = document.createElement('source');
-    sourceWrong.src = `assets/sounds/error.mp3`;
+    sourceWrong.src = `../src/assets/sounds/error.mp3`;
     this.wrongAnswer.append(sourceWrong);
 
     this.soundWin = document.createElement('audio');
     const sourceWin = document.createElement('source');
-    sourceWin.src = `assets/sounds/success.mp3`;
+    sourceWin.src = `../src/assets/sounds/success.mp3`;
     this.soundWin.append(sourceWin);
 
     this.soundLose = document.createElement('audio');
     const sourceLose = document.createElement('source');
-    sourceLose.src = `assets/sounds/failure.mp3`;
+    sourceLose.src = `../src/assets/sounds/failure.mp3`;
     this.soundLose.append(sourceLose);
 
     // add button and stars box to document
