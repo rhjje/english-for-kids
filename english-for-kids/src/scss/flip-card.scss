@@ -1,0 +1,67 @@
+.card-word {
+  width: 300px;
+  height: 280px;
+  position: relative;
+  margin: 25px;
+  perspective: 100vw;
+  border-radius: 10px;
+  transition: .5s;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.card-word__front, .card-word__back {
+  position: absolute;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(209, 204, 204);
+  transition: 1s;
+  backface-visibility: hidden;
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.3);
+}
+
+.card-word__front-image, .card-word__back-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  user-select: none;
+  img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+  }
+}
+
+.card-word__front-name, .card-word__back-name {
+  margin-top: 20px;
+  font-size: 2.4rem;
+  user-select: none;
+}
+
+.card-word__back {
+  background-color: #BDBDBD;
+  transform: rotateY(180deg);
+}
+
+.reverse-button {
+  width: 40px;
+  height: 40px;
+  background: url('../assets/icons/reverse.svg') no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 220px;
+  left: 230px;
+  opacity: 0.7;
+  z-index: 10;
+  &:hover {
+    opacity: 1;
+  }
+  &:active {
+    transform: scale(0.8);
+  }
+}

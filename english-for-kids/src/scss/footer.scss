@@ -1,0 +1,49 @@
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: sandybrown;
+}
+
+.contacts {
+  display: flex;
+}
+
+.telegram, .discord, .git {
+  width: 140px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  img {
+    height: 30px;
+    width: auto;
+    padding-right: 10px;
+  }
+}
+
+.telegram__contact, .discord__contact, .git a {
+  font-size: 1.4rem;
+}
+
+.git a {
+  text-decoration: none;
+  color: black;
+}
+
+.logo {
+  width: 420px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: auto;
+    height: 60px;
+  }
+}
+
+.created {
+  width: 420px;
+  text-align: right;
+  font-size: 1.4rem;
+}

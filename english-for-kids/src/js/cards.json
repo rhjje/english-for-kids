@@ -1,0 +1,402 @@
+[
+  [
+    {
+      "word": "cry",
+      "translation": "плакать",
+      "image": "assets/images/action-set-a/cry.jpg",
+      "category": "Action (set A)"
+    },
+    {
+      "word": "dance",
+      "translation": "танцевать",
+      "image": "assets/images/action-set-a/dance.jpg",
+      "category": "Action (set A)"
+    },
+    {
+      "word": "dive",
+      "translation": "нырять",
+      "image": "assets/images/action-set-a/dive.jpg",
+      "category": "Action (set A)"
+    },
+    {
+      "word": "jump",
+      "translation": "прыгать",
+      "image": "assets/images/action-set-a/jump.jpg",
+      "category": "Action (set A)"
+    },
+    {
+      "word": "ride",
+      "translation": "ехать",
+      "image": "assets/images/action-set-a/ride.jpg",
+      "category": "Action (set A)"
+    },
+    {
+      "word": "run",
+      "translation": "бежать",
+      "image": "assets/images/action-set-a/run.jpg",
+      "category": "Action (set A)"
+    },
+    {
+      "word": "skip",
+      "translation": "скакать",
+      "image": "assets/images/action-set-a/skip.jpg",
+      "category": "Action (set A)"
+    },
+    {
+      "word": "swim",
+      "translation": "плавать",
+      "image": "assets/images/action-set-a/swim.jpg",
+      "category": "Action (set A)"
+    }
+  ],
+  [
+    {
+      "word": "draw",
+      "translation": "рисовать",
+      "image": "assets/images/action-set-b/draw.jpg",
+      "category": "Action (set B)"
+    },
+    {
+      "word": "fish",
+      "translation": "ловить рыбу",
+      "image": "assets/images/action-set-b/fish.jpg",
+      "category": "Action (set B)"
+    },
+    {
+      "word": "fly",
+      "translation": "летать",
+      "image": "assets/images/action-set-b/fly.jpg",
+      "category": "Action (set B)"
+    },
+    {
+      "word": "hug",
+      "translation": "обнимать",
+      "image": "assets/images/action-set-b/hug.jpg",
+      "category": "Action (set B)"
+    },
+    {
+      "word": "open",
+      "translation": "открывать",
+      "image": "assets/images/action-set-b/open.jpg",
+      "category": "Action (set B)"
+    },
+    {
+      "word": "play",
+      "translation": "играть",
+      "image": "assets/images/action-set-b/play.jpg",
+      "category": "Action (set B)"
+    },
+    {
+      "word": "point",
+      "translation": "указывать",
+      "image": "assets/images/action-set-b/point.jpg",
+      "category": "Action (set B)"
+    },
+    {
+      "word": "sing",
+      "translation": "петь",
+      "image": "assets/images/action-set-b/sing.jpg",
+      "category": "Action (set B)"
+    }
+  ],
+  [
+    {
+      "word": "drink",
+      "translation": "пить",
+      "image": "assets/images/action-set-c/drink.jpg",
+      "category": "Action (set C)"
+    },
+    {
+      "word": "drive",
+      "translation": "водить машину",
+      "image": "assets/images/action-set-c/drive.jpg",
+      "category": "Action (set C)"
+    },
+    {
+      "word": "eat",
+      "translation": "есть",
+      "image": "assets/images/action-set-c/eat.jpg",
+      "category": "Action (set C)"
+    },
+    {
+      "word": "meet",
+      "translation": "встретить",
+      "image": "assets/images/action-set-c/meet.jpg",
+      "category": "Action (set C)"
+    },
+    {
+      "word": "read",
+      "translation": "читать",
+      "image": "assets/images/action-set-c/read.jpg",
+      "category": "Action (set C)"
+    },
+    {
+      "word": "sleep",
+      "translation": "спать",
+      "image": "assets/images/action-set-c/sleep.jpg",
+      "category": "Action (set C)"
+    },
+    {
+      "word": "wait",
+      "translation": "ждать",
+      "image": "assets/images/action-set-c/wait.jpg",
+      "category": "Action (set C)"
+    },
+    {
+      "word": "write",
+      "translation": "писать",
+      "image": "assets/images/action-set-c/write.jpg",
+      "category": "Action (set C)"
+    }
+  ],
+  [
+    {
+      "word": "cold",
+      "translation": "холодный",
+      "image": "assets/images/adjective/cold.jpg",
+      "category": "Adjective"
+    },
+    {
+      "word": "dark",
+      "translation": "тёмный",
+      "image": "assets/images/adjective/dark.jpg",
+      "category": "Adjective"
+    },
+    {
+      "word": "fast",
+      "translation": "быстрый",
+      "image": "assets/images/adjective/fast.jpg",
+      "category": "Adjective"
+    },
+    {
+      "word": "fat",
+      "translation": "толстый",
+      "image": "assets/images/adjective/fat.jpg",
+      "category": "Adjective"
+    },
+    {
+      "word": "friendly",
+      "translation": "дружелюбный",
+      "image": "assets/images/adjective/friendly.jpg",
+      "category": "Adjective"
+    },
+    {
+      "word": "hot",
+      "translation": "горячий",
+      "image": "assets/images/adjective/hot.jpg",
+      "category": "Adjective"
+    },
+    {
+      "word": "tall",
+      "translation": "высокий",
+      "image": "assets/images/adjective/tall.jpg",
+      "category": "Adjective"
+    },
+    {
+      "word": "wet",
+      "translation": "мокрый",
+      "image": "assets/images/adjective/wet.jpg",
+      "category": "Adjective"
+    }
+  ],
+  [
+    {
+      "word": "hippopotamus",
+      "translation": "бегемот",
+      "image": "assets/images/animal-set-a/hippopotamus.jpg",
+      "category": "Animal (set A)"
+    },
+    {
+      "word": "cat",
+      "translation": "кошка",
+      "image": "assets/images/animal-set-a/cat.jpg",
+      "category": "Animal (set A)"
+    },
+    {
+      "word": "lion",
+      "translation": "лев",
+      "image": "assets/images/animal-set-a/lion.jpg",
+      "category": "Animal (set A)"
+    },
+    {
+      "word": "pig",
+      "translation": "свинья",
+      "image": "assets/images/animal-set-a/pig.jpg",
+      "category": "Animal (set A)"
+    },
+    {
+      "word": "rabbit",
+      "translation": "кролик",
+      "image": "assets/images/animal-set-a/rabbit.jpg",
+      "category": "Animal (set A)"
+    },
+    {
+      "word": "sheep",
+      "translation": "овца",
+      "image": "assets/images/animal-set-a/sheep.jpg",
+      "category": "Animal (set A)"
+    },
+    {
+      "word": "toucan",
+      "translation": "тукан",
+      "image": "assets/images/animal-set-a/toucan.jpg",
+      "category": "Animal (set A)"
+    },
+    {
+      "word": "turtle",
+      "translation": "черепаха",
+      "image": "assets/images/animal-set-a/turtle.jpg",
+      "category": "Animal (set A)"
+    }
+  ],
+  [
+    {
+      "word": "chicken",
+      "translation": "курица",
+      "image": "assets/images/animal-set-b/chicken.jpg",
+      "category": "Animal (set B)"
+    },
+    {
+      "word": "dog",
+      "translation": "собака",
+      "image": "assets/images/animal-set-b/dog.jpg",
+      "category": "Animal (set B)"
+    },
+    {
+      "word": "dolphin",
+      "translation": "дельфин",
+      "image": "assets/images/animal-set-b/dolphin.jpg",
+      "category": "Animal (set B)"
+    },
+    {
+      "word": "fish",
+      "translation": "рыба",
+      "image": "assets/images/animal-set-b/fish.jpg",
+      "category": "Animal (set B)"
+    },
+    {
+      "word": "frog",
+      "translation": "лягушка",
+      "image": "assets/images/animal-set-b/frog.jpg",
+      "category": "Animal (set B)"
+    },
+    {
+      "word": "giraffe",
+      "translation": "жираф",
+      "image": "assets/images/animal-set-b/giraffe.jpg",
+      "category": "Animal (set B)"
+    },
+    {
+      "word": "horse",
+      "translation": "лошадь",
+      "image": "assets/images/animal-set-b/horse.jpg",
+      "category": "Animal (set B)"
+    },
+    {
+      "word": "mouse",
+      "translation": "мышь",
+      "image": "assets/images/animal-set-b/mouse.jpg",
+      "category": "Animal (set B)"
+    }
+  ],
+  [
+    {
+      "word": "blouse",
+      "translation": "блузка",
+      "image": "assets/images/clothes/blouse.jpg",
+      "category": "Clothes"
+    },
+    {
+      "word": "boot",
+      "translation": "ботинок",
+      "image": "assets/images/clothes/boot.jpg",
+      "category": "Clothes"
+    },
+    {
+      "word": "coat",
+      "translation": "пальто",
+      "image": "assets/images/clothes/coat.jpg",
+      "category": "Clothes"
+    },
+    {
+      "word": "dress",
+      "translation": "платье",
+      "image": "assets/images/clothes/dress.jpg",
+      "category": "Clothes"
+    },
+    {
+      "word": "pants",
+      "translation": "штаны",
+      "image": "assets/images/clothes/pants.jpg",
+      "category": "Clothes"
+    },
+    {
+      "word": "shirt",
+      "translation": "рубашка",
+      "image": "assets/images/clothes/shirt.jpg",
+      "category": "Clothes"
+    },
+    {
+      "word": "shoes",
+      "translation": "обувь",
+      "image": "assets/images/clothes/shoe.jpg",
+      "category": "Clothes"
+    },
+    {
+      "word": "skirt",
+      "translation": "юбка",
+      "image": "assets/images/clothes/skirt.jpg",
+      "category": "Clothes"
+    }
+  ],
+  [
+    {
+      "word": "angry",
+      "translation": "сердитый",
+      "image": "assets/images/emotion/angry.jpg",
+      "category": "Emotion"
+    },
+    {
+      "word": "happy",
+      "translation": "счастливый",
+      "image": "assets/images/emotion/happy.jpg",
+      "category": "Emotion"
+    },
+    {
+      "word": "laugh",
+      "translation": "смех",
+      "image": "assets/images/emotion/laugh.jpg",
+      "category": "Emotion"
+    },
+    {
+      "word": "sad",
+      "translation": "грустный",
+      "image": "assets/images/emotion/sad.jpg",
+      "category": "Emotion"
+    },
+    {
+      "word": "scared",
+      "translation": "испуганный",
+      "image": "assets/images/emotion/scared.jpg",
+      "category": "Emotion"
+    },
+    {
+      "word": "smile",
+      "translation": "улыбка",
+      "image": "assets/images/emotion/smile.jpg",
+      "category": "Emotion"
+    },
+    {
+      "word": "surprised",
+      "translation": "удивлённый",
+      "image": "assets/images/emotion/surprised.jpg",
+      "category": "Emotion"
+    },
+    {
+      "word": "tired",
+      "translation": "уставший",
+      "image": "assets/images/emotion/tired.jpg",
+      "category": "Emotion"
+    }
+  ]
+]
