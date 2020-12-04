@@ -79,7 +79,7 @@ const categories = {
 
   setContentCards(activeCard) {
     this.isHeadPage = false;
-    // playGame.makeVisibleButton();
+    playGame.makeVisibleButton();
 
     const request = new XMLHttpRequest();
     request.open('GET', './src/js/cards.json');
@@ -92,11 +92,11 @@ const categories = {
         // create card
         const card = document.createElement('div');
         card.className = 'card-word';
-        // if (toggler.toggleOff) {
-        //   card.style.height = '280px';
-        // } else {
-        //   card.style.height = '200px';
-        // }
+        if (toggler.toggleOff) {
+          card.style.height = '280px';
+        } else {
+          card.style.height = '200px';
+        }
 
         // create front side card
         const cardFront = document.createElement('div');
@@ -107,7 +107,7 @@ const categories = {
         const cardFrontImage = document.createElement('div');
         cardFrontImage.className = 'card-word__front-image';
         const imgFront = document.createElement('img');
-        imgFront.src = `../src/${cardsContent[activeCard][i]['image']}`;
+        imgFront.src = `./src/${cardsContent[activeCard][i]['image']}`;
         cardFrontImage.append(imgFront);
 
         const cardFrontName = document.createElement('span');
@@ -139,7 +139,7 @@ const categories = {
         const cardBackImage = document.createElement('div');
         cardBackImage.className = 'card-word__back-image';
         const img = document.createElement('img');
-        img.src = `../src/${cardsContent[activeCard][i]['image']}`;
+        img.src = `./src/${cardsContent[activeCard][i]['image']}`;
         cardBackImage.append(img);
 
         const cardBackName = document.createElement('span');
@@ -176,7 +176,7 @@ const categories = {
     const words = document.querySelectorAll('.card-word__front-name');
     const audio = document.createElement('audio');
     const source = document.createElement('source');
-    source.src = `../src/assets/sounds/${words[number].innerText}.mp3`;
+    source.src = `./src/assets/sounds/${words[number].innerText}.mp3`;
     audio.append(source);
     audio.play();
   },
@@ -209,22 +209,22 @@ const playGame = {
     // add diffents sounds
     this.correctAnswer = document.createElement('audio');
     const sourceCorrect = document.createElement('source');
-    sourceCorrect.src = `../src/assets/sounds/correct.mp3`;
+    sourceCorrect.src = `./src/assets/sounds/correct.mp3`;
     this.correctAnswer.append(sourceCorrect);
 
     this.wrongAnswer = document.createElement('audio');
     const sourceWrong = document.createElement('source');
-    sourceWrong.src = `../src/assets/sounds/error.mp3`;
+    sourceWrong.src = `./src/assets/sounds/error.mp3`;
     this.wrongAnswer.append(sourceWrong);
 
     this.soundWin = document.createElement('audio');
     const sourceWin = document.createElement('source');
-    sourceWin.src = `../src/assets/sounds/success.mp3`;
+    sourceWin.src = `./src/assets/sounds/success.mp3`;
     this.soundWin.append(sourceWin);
 
     this.soundLose = document.createElement('audio');
     const sourceLose = document.createElement('source');
-    sourceLose.src = `../src/assets/sounds/failure.mp3`;
+    sourceLose.src = `./src/assets/sounds/failure.mp3`;
     this.soundLose.append(sourceLose);
 
     // add button and stars box to document
@@ -254,7 +254,7 @@ const playGame = {
     const playWord = () => {
       const audio = document.createElement('audio');
       const source = document.createElement('source');
-      source.src = `../src/assets/sounds/${this.currentWords[orderWords[count]]}.mp3`;
+      source.src = `./src/assets/sounds/${this.currentWords[orderWords[count]]}.mp3`;
       audio.append(source);
       audio.play();
     }
@@ -265,7 +265,7 @@ const playGame = {
       card.addEventListener('click', () => {
         if (+card.getAttribute('data-number') === orderWords[count]) {
           const winStars = document.createElement('img');
-          winStars.src = '../src/assets/icons/star-win.svg';
+          winStars.src = './src/assets/icons/star-win.svg';
           this.boxStars.appendChild(winStars);
 
           this.correctAnswer.play();
@@ -302,7 +302,7 @@ const playGame = {
               const img = document.createElement('img');
               const arrImgs = ['mask.jpg', 'stark.jpg', 'stark2.jpg', 'youDidIt.png'];
               arrImgs.sort(() => Math.random() - 0.5);
-              img.src = `../src/assets/images/endGame/${arrImgs[0]}`;
+              img.src = `./src/assets/images/endGame/${arrImgs[0]}`;
 
               winScreen.append(img);
               cards.appendChild(span);
@@ -329,7 +329,7 @@ const playGame = {
               const img = document.createElement('img');
               const arrImgs = ['lose1', 'lose2', 'lose3', 'lose4', 'lose5'];
               arrImgs.sort(() => Math.random() - 0.5);
-              img.src = `../src/assets/images/endGame/${arrImgs[0]}.jpg`;
+              img.src = `./src/assets/images/endGame/${arrImgs[0]}.jpg`;
 
               winScreen.append(img);
               cards.appendChild(span);
@@ -349,7 +349,7 @@ const playGame = {
           localStorage.setItem(`${currentCard}`, `${JSON.stringify(currentWord)}`);
 
           const winStars = document.createElement('img');
-          winStars.src = '../src/assets/icons/star.svg';
+          winStars.src = './src/assets/icons/star.svg';
           this.boxStars.appendChild(winStars);
           this.wrongAnswer.play();
           mistakes += 1;
@@ -443,7 +443,7 @@ toggler.init();
 const statistics = {
   setLocalStorage() {
     const request = new XMLHttpRequest();
-    request.open('GET', '../src/js/cards.json');
+    request.open('GET', './src/js/cards.json');
     request.send();
 
     const words = [];
