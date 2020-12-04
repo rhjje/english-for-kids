@@ -18,17 +18,17 @@ module.exports = {
           ],
         },
         {
+          test: /\.(png|jpg|gif)$/,
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+          },
+        },
+        {
           test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
           loader: 'url-loader',
           options: {
             limit: 8192,
-          },
-        },
-        {
-          test: /\.(png|jpg|gif|svg)$/,
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
           },
         },
         ],

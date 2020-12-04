@@ -12,10 +12,10 @@ const categories = {
   },
 
   images: {
-    0: '../categories/actionA.jpg',
-    1: '../categories/actionB.jpg',
-    2: '../categories/actionC.jpg',
-    3: '../categories/adjective.jpg',
+    0: '../english-for-kids/categories/actionA.jpg',
+    1: '../english-for-kids/categories/actionB.jpg',
+    2: '../english-for-kids/categories/actionC.jpg',
+    3: '../english-for-kids/categories/adjective.jpg',
     4: '../categories/animalA.jpg',
     5: '../categories/animalB.jpg',
     6: '../categories/clothes.jpg',
