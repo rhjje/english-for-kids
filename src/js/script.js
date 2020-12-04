@@ -12,14 +12,14 @@ const categories = {
   },
 
   images: {
-    0: '../src/assets/images/categories/actionA.jpg',
-    1: '../src/assets/images/categories/actionB.jpg',
-    2: '../src/assets/images/categories/actionC.jpg',
-    3: '../src/assets/images/categories/adjective.jpg',
-    4: '../src/assets/images/categories/animalA.jpg',
-    5: '../src/assets/images/categories/animalB.jpg',
-    6: '../src/assets/images/categories/clothes.jpg',
-    7: '../src/assets/images/categories/emotion.jpg',
+    0: './src/assets/images/categories/actionA.jpg',
+    1: './src/assets/images/categories/actionB.jpg',
+    2: './src/assets/images/categories/actionC.jpg',
+    3: './src/assets/images/categories/adjective.jpg',
+    4: './src/assets/images/categories/animalA.jpg',
+    5: './src/assets/images/categories/animalB.jpg',
+    6: './src/assets/images/categories/clothes.jpg',
+    7: './src/assets/images/categories/emotion.jpg',
   },
 
   isHeadPage: true,
@@ -82,7 +82,7 @@ const categories = {
     // playGame.makeVisibleButton();
 
     const request = new XMLHttpRequest();
-    request.open('GET', '../src/js/cards.json');
+    request.open('GET', './src/js/cards.json');
     request.send();
 
     request.onload = () => {
