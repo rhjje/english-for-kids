@@ -12,14 +12,14 @@ const categories = {
   },
 
   images: {
-    0: '../english-for-kids/categories/actionA.jpg',
-    1: '../english-for-kids/categories/actionB.jpg',
-    2: '../english-for-kids/categories/actionC.jpg',
-    3: '../english-for-kids/categories/adjective.jpg',
-    4: '../categories/animalA.jpg',
-    5: '../categories/animalB.jpg',
-    6: '../categories/clothes.jpg',
-    7: '../categories/emotion.jpg',
+    0: '../src/assets/images/categories/actionA.jpg',
+    1: '../src/assets/images/categories/actionB.jpg',
+    2: '../src/assets/images/categories/actionC.jpg',
+    3: '../src/assets/images/categories/adjective.jpg',
+    4: '../src/assets/images/categories/animalA.jpg',
+    5: '../src/assets/images/categories/animalB.jpg',
+    6: '../src/assets/images/categories/clothes.jpg',
+    7: '../src/assets/images/categories/emotion.jpg',
   },
 
   isHeadPage: true,
