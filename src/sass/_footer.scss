@@ -1,0 +1,77 @@
+.footer {
+  display: flex;
+  padding: 0 20px;
+  justify-content: space-around;
+  align-items: center;
+  background-color: sandybrown;
+}
+
+.contacts {
+  display: flex;
+}
+
+.telegram, .discord, .git {
+  width: 140px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  img {
+    height: 30px;
+    width: auto;
+    padding-right: 10px;
+  }
+}
+
+.telegram__contact, .discord__contact, .git a {
+  font-size: 1.4rem;
+}
+
+.git a {
+  text-decoration: none;
+  color: black;
+}
+
+.logo {
+  width: 420px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: auto;
+    height: 60px;
+  }
+}
+
+.created {
+  width: 420px;
+  text-align: right;
+  font-size: 1.4rem;
+}
+
+.contacts, .logo, .created {
+  width: calc(100% / 3);
+}
+
+@media screen and (max-width: 900px) {
+  .discord {
+    width: 120px;
+  }
+  .telegram, .git {
+    width: 85px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .telegram, .discord {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .logo {
+    img {
+      height: 40px;
+    }
+  }
+}

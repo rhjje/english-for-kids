@@ -1,3 +1,7 @@
+/* eslint-disable no-loop-func */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 const categories = {
   container: null,
   title: {
@@ -12,14 +16,14 @@ const categories = {
   },
 
   images: {
-    0: './src/assets/images/categories/actionA.jpg',
-    1: './src/assets/images/categories/actionB.jpg',
-    2: './src/assets/images/categories/actionC.jpg',
-    3: './src/assets/images/categories/adjective.jpg',
-    4: './src/assets/images/categories/animalA.jpg',
-    5: './src/assets/images/categories/animalB.jpg',
-    6: './src/assets/images/categories/clothes.jpg',
-    7: './src/assets/images/categories/emotion.jpg',
+    0: './assets/images/categories/actionA.jpg',
+    1: './assets/images/categories/actionB.jpg',
+    2: './assets/images/categories/actionC.jpg',
+    3: './assets/images/categories/adjective.jpg',
+    4: './assets/images/categories/animalA.jpg',
+    5: './assets/images/categories/animalB.jpg',
+    6: './assets/images/categories/clothes.jpg',
+    7: './assets/images/categories/emotion.jpg',
   },
 
   isHeadPage: true,
@@ -66,14 +70,9 @@ const categories = {
   },
 
   removeContent() {
-    const cards = this.container.querySelectorAll('.card');
-    for (const card of cards) {
-      this.container.removeChild(card);
-    }
-
-    const cardsWords = this.container.querySelectorAll('.card-word');
-    for (const cardWord of cardsWords) {
-      this.container.removeChild(cardWord);
+    const currentCards = document.querySelector('.container .wrapper');
+    while (currentCards.firstChild) {
+      currentCards.removeChild(currentCards.firstChild);
     }
   },
 
@@ -82,7 +81,7 @@ const categories = {
     playGame.makeVisibleButton();
 
     const request = new XMLHttpRequest();
-    request.open('GET', './src/js/cards.json');
+    request.open('GET', './assets/json/cards.json');
     request.send();
 
     request.onload = () => {
@@ -102,17 +101,17 @@ const categories = {
         const cardFront = document.createElement('div');
         cardFront.className = 'card-word__front';
         cardFront.setAttribute('data-number', `${i}`);
-        cardFront.setAttribute('data-name', `${cardsContent[activeCard][i]['word']}`);
+        cardFront.setAttribute('data-name', `${cardsContent[activeCard][i].word}`);
 
         const cardFrontImage = document.createElement('div');
         cardFrontImage.className = 'card-word__front-image';
         const imgFront = document.createElement('img');
-        imgFront.src = `./src/${cardsContent[activeCard][i]['image']}`;
+        imgFront.src = `./${cardsContent[activeCard][i].image}`;
         cardFrontImage.append(imgFront);
 
         const cardFrontName = document.createElement('span');
         cardFrontName.className = 'card-word__front-name';
-        cardFrontName.innerText = `${cardsContent[activeCard][i]['word']}`;
+        cardFrontName.innerText = `${cardsContent[activeCard][i].word}`;
 
         // add event listener to card for voicing
         cardFront.addEventListener('click', (event) => {
@@ -139,12 +138,12 @@ const categories = {
         const cardBackImage = document.createElement('div');
         cardBackImage.className = 'card-word__back-image';
         const img = document.createElement('img');
-        img.src = `./src/${cardsContent[activeCard][i]['image']}`;
+        img.src = `./${cardsContent[activeCard][i].image}`;
         cardBackImage.append(img);
 
         const cardBackName = document.createElement('span');
         cardBackName.className = 'card-word__back-name';
-        cardBackName.innerText = `${cardsContent[activeCard][i]['translation']}`;
+        cardBackName.innerText = `${cardsContent[activeCard][i].translation}`;
 
         cardBack.appendChild(cardBackImage);
         cardBack.appendChild(cardBackName);
@@ -156,7 +155,7 @@ const categories = {
         this.container.appendChild(card);
       }
       statistics.countClicks();
-    }
+    };
   },
 
   reverseCard(number) {
@@ -176,7 +175,7 @@ const categories = {
     const words = document.querySelectorAll('.card-word__front-name');
     const audio = document.createElement('audio');
     const source = document.createElement('source');
-    source.src = `./src/assets/sounds/${words[number].innerText}.mp3`;
+    source.src = `./assets/sounds/${words[number].innerText}.mp3`;
     audio.append(source);
     audio.play();
   },
@@ -193,13 +192,16 @@ const playGame = {
   wrongAnswer: null,
   soundWin: null,
   soundLose: null,
+  singleGame: true,
+  currentSound: null,
+  attributeCards: [],
 
   init() {
-    //create button play
+    // create button play
     this.button = document.createElement('div');
     this.button.classList.add('button-play', 'disabled');
     const title = document.createElement('span');
-    title.innerText = 'PLAY';
+    title.innerText = 'Start game';
     this.button.append(title);
 
     // create box stars
@@ -209,22 +211,22 @@ const playGame = {
     // add diffents sounds
     this.correctAnswer = document.createElement('audio');
     const sourceCorrect = document.createElement('source');
-    sourceCorrect.src = `./src/assets/sounds/correct.mp3`;
+    sourceCorrect.src = './assets/sounds/correct.mp3';
     this.correctAnswer.append(sourceCorrect);
 
     this.wrongAnswer = document.createElement('audio');
     const sourceWrong = document.createElement('source');
-    sourceWrong.src = `./src/assets/sounds/error.mp3`;
+    sourceWrong.src = './assets/sounds/error.mp3';
     this.wrongAnswer.append(sourceWrong);
 
     this.soundWin = document.createElement('audio');
     const sourceWin = document.createElement('source');
-    sourceWin.src = `./src/assets/sounds/success.mp3`;
+    sourceWin.src = './assets/sounds/success.mp3';
     this.soundWin.append(sourceWin);
 
     this.soundLose = document.createElement('audio');
     const sourceLose = document.createElement('source');
-    sourceLose.src = `./src/assets/sounds/failure.mp3`;
+    sourceLose.src = './assets/sounds/failure.mp3';
     this.soundLose.append(sourceLose);
 
     // add button and stars box to document
@@ -232,16 +234,20 @@ const playGame = {
     document.querySelector('.container').appendChild(this.boxStars);
 
     this.button.addEventListener('click', () => {
-      this.currentWords = [];
-      this.play();
+      if (this.singleGame) {
+        this.button.classList.add('repeat');
+        document.querySelector('.button-play > span').innerText = '';
+        this.currentWords = [];
+        this.play();
+        this.singleGame = false;
+      } else {
+        const audio = document.createElement('audio');
+        const source = document.createElement('source');
+        source.src = this.currentSound;
+        audio.append(source);
+        audio.play();
+      }
     });
-  },
-
-  setPlayingWords() {
-    const words = document.querySelectorAll('.card-word__front-name');
-    for (let i = 0; i < 8; i += 1) {
-      this.currentWords[i] = words[i].innerText;
-    }
   },
 
   play() {
@@ -254,18 +260,20 @@ const playGame = {
     const playWord = () => {
       const audio = document.createElement('audio');
       const source = document.createElement('source');
-      source.src = `./src/assets/sounds/${this.currentWords[orderWords[count]]}.mp3`;
+      source.src = `./assets/sounds/${this.currentWords[orderWords[count]]}.mp3`;
+      this.currentSound = `./assets/sounds/${this.currentWords[orderWords[count]]}.mp3`;
       audio.append(source);
       audio.play();
-    }
+    };
     // add event listener cards of word
     const cards = document.querySelectorAll('.card-word__front');
 
     for (const card of cards) {
       card.addEventListener('click', () => {
         if (+card.getAttribute('data-number') === orderWords[count]) {
+          this.attributeCards.push(card.getAttribute('data-number'));
           const winStars = document.createElement('img');
-          winStars.src = './src/assets/icons/star-win.svg';
+          winStars.src = './assets/icons/star-win.svg';
           this.boxStars.appendChild(winStars);
 
           this.correctAnswer.play();
@@ -273,83 +281,92 @@ const playGame = {
           count += 1;
 
           if (count < 8) {
-            setTimeout(() => {
-              return playWord();
-            }, 500);
+            setTimeout(() => playWord(), 500);
           }
 
           // set local storage
           const currentCard = card.getAttribute('data-name');
-          let currentWord = JSON.parse(localStorage.getItem(`${currentCard}`));
+          const currentWord = JSON.parse(localStorage.getItem(`${currentCard}`));
           currentWord.correct += 1;
+          currentWord.percent = (currentWord.wrong * 100)
+            / (currentWord.wrong + currentWord.correct);
           localStorage.setItem(`${currentCard}`, `${JSON.stringify(currentWord)}`);
 
           // check win or lose
           if (count === 8 && mistakes === 0) {
             setTimeout(() => {
-              const cards = document.querySelector('.container .wrapper');
-              while (cards.firstChild) {
-                cards.removeChild(cards.firstChild);
+              const currentCards = document.querySelector('.container .wrapper');
+              while (currentCards.firstChild) {
+                currentCards.removeChild(currentCards.firstChild);
               }
+              document.querySelector('.button-play > span').innerText = 'Start game';
+              this.singleGame = true;
+              this.button.classList.remove('repeat');
               this.button.classList.add('disabled');
+              this.attributeCards = [];
 
               // add final title and picture
               const winScreen = document.createElement('div');
               winScreen.className = 'win-image';
-              const span = document.createElement('span');
+              const span = document.createElement('div');
               span.className = 'win-title';
               span.innerText = 'Congratulations. You won!';
               const img = document.createElement('img');
               const arrImgs = ['mask.jpg', 'stark.jpg', 'stark2.jpg', 'youDidIt.png'];
               arrImgs.sort(() => Math.random() - 0.5);
-              img.src = `./src/assets/images/endGame/${arrImgs[0]}`;
+              img.src = `./assets/images/endGame/${arrImgs[0]}`;
 
               winScreen.append(img);
-              cards.appendChild(span);
-              cards.appendChild(winScreen);
+              currentCards.appendChild(span);
+              currentCards.appendChild(winScreen);
               this.soundWin.play();
             }, 500);
 
             this.clearFinalScreen();
-
           } else if (count === 8) {
             setTimeout(() => {
-              const cards = document.querySelector('.container .wrapper');
-              while (cards.firstChild) {
-                cards.removeChild(cards.firstChild);
+              const currentCards = document.querySelector('.container .wrapper');
+              while (currentCards.firstChild) {
+                currentCards.removeChild(currentCards.firstChild);
               }
+              document.querySelector('.button-play > span').innerText = 'Start game';
+              this.singleGame = true;
+              this.button.classList.remove('repeat');
               this.button.classList.add('disabled');
+              this.attributeCards = [];
 
               // add final title and picture
               const winScreen = document.createElement('div');
               winScreen.className = 'win-image';
               const span = document.createElement('span');
               span.className = 'win-title';
-              span.innerText = 'Sorry. You lost(: Train and try again!';
+              span.innerHTML = `Sorry. You lost(: Train and try again!</br>
+                Number of mistakes ${mistakes}.`;
               const img = document.createElement('img');
               const arrImgs = ['lose1', 'lose2', 'lose3', 'lose4', 'lose5'];
               arrImgs.sort(() => Math.random() - 0.5);
-              img.src = `./src/assets/images/endGame/${arrImgs[0]}.jpg`;
+              img.src = `./assets/images/endGame/${arrImgs[0]}.jpg`;
 
               winScreen.append(img);
-              cards.appendChild(span);
-              cards.appendChild(winScreen);
+              currentCards.appendChild(span);
+              currentCards.appendChild(winScreen);
 
               this.soundLose.play();
             }, 500);
 
             this.clearFinalScreen();
           }
-
-        } else {
+        } else if (!this.attributeCards.includes(card.getAttribute('data-number'))) {
           // set local storage
           const currentCard = this.currentWords[orderWords[count]];
-          let currentWord = JSON.parse(localStorage.getItem(`${currentCard}`));
+          const currentWord = JSON.parse(localStorage.getItem(`${currentCard}`));
           currentWord.wrong += 1;
+          currentWord.percent = (currentWord.wrong * 100)
+            / (currentWord.wrong + currentWord.correct);
           localStorage.setItem(`${currentCard}`, `${JSON.stringify(currentWord)}`);
 
           const winStars = document.createElement('img');
-          winStars.src = './src/assets/icons/star.svg';
+          winStars.src = './assets/icons/star.svg';
           this.boxStars.appendChild(winStars);
           this.wrongAnswer.play();
           mistakes += 1;
@@ -358,6 +375,13 @@ const playGame = {
     }
 
     playWord();
+  },
+
+  setPlayingWords() {
+    const words = document.querySelectorAll('.card-word__front-name');
+    for (let i = 0; i < 8; i += 1) {
+      this.currentWords[i] = words[i].innerText;
+    }
   },
 
   clearFinalScreen() {
@@ -378,7 +402,7 @@ const playGame = {
     } else {
       playGame.button.classList.remove('disabled');
     }
-  }
+  },
 };
 
 playGame.init();
@@ -396,6 +420,7 @@ const toggler = {
 
     this.toggle = document.createElement('div');
     this.toggle.className = 'toggle';
+    this.toggle.setAttribute('data-info', 'off');
     this.titlePlay = document.createElement('span');
     this.titlePlay.className = 'play';
     this.titlePlay.innerText = 'play';
@@ -418,15 +443,20 @@ const toggler = {
       const cards = document.querySelectorAll('.card-word');
 
       if (this.toggleOff) {
+        const statistics = document.querySelector('.table');
+        if (statistics) {
+          categories.isHeadPage = true;
+        }
+        this.toggle.setAttribute('data-info', 'on');
         this.toggle.style.transform = 'translateX(80px)';
         this.toggleOff = false;
         playGame.makeVisibleButton();
-        // playGame.button.classList.remove('disabled');
 
         for (const card of cards) {
           card.style.height = '200px';
         }
       } else {
+        this.toggle.setAttribute('data-info', 'off');
         this.toggle.style.transform = 'translateX(0)';
         this.toggleOff = true;
         playGame.button.classList.add('disabled');
@@ -435,7 +465,7 @@ const toggler = {
         }
       }
     });
-  }
+  },
 };
 
 toggler.init();
@@ -443,21 +473,20 @@ toggler.init();
 const statistics = {
   setLocalStorage() {
     const request = new XMLHttpRequest();
-    request.open('GET', './src/js/cards.json');
+    request.open('GET', './assets/json/cards.json');
     request.send();
 
     const words = [];
 
     request.onload = () => {
       const cardsContent = JSON.parse(request.response);
-      for (const arr of cardsContent) {
-        for (const card of arr) {
+      cardsContent.forEach((arr) => {
+        arr.forEach((card) => {
           words.push(card);
-        }
-      }
+        });
+      });
 
-      for (const item of words) {
-
+      words.forEach((item) => {
         const currentObj = {
           word: item.word,
           translation: item.translation,
@@ -470,25 +499,24 @@ const statistics = {
         if (!localStorage.getItem(`${item.word}`)) {
           localStorage.setItem(`${item.word}`, `${JSON.stringify(currentObj)}`);
         }
-      }
+      });
     };
   },
 
   countClicks() {
     const cards = document.querySelectorAll('.card-word__front');
-    for (const card of cards) {
+    cards.forEach((card) => {
       card.addEventListener('click', () => {
         const currentCard = card.getAttribute('data-name');
-        let currentWord = JSON.parse(localStorage.getItem(`${currentCard}`));
+        const currentWord = JSON.parse(localStorage.getItem(`${currentCard}`));
 
         if (toggler.toggleOff) {
           currentWord.clicks += 1;
           localStorage.setItem(`${currentCard}`, `${JSON.stringify(currentWord)}`);
         }
-        
       });
-    }
-  }
+    });
+  },
 };
 
 statistics.setLocalStorage();
@@ -523,7 +551,7 @@ const burgerIcon = {
 
         // movement burger-menu
         document.querySelector('.burger-menu').style.transform = 'translateX(0)';
-
+        document.querySelector('.modal').classList.remove('modal-disabled');
         this.buttonOff = false;
       } else {
         this.firstLIne.style.transform = 'translateY(0) rotate(0)';
@@ -532,7 +560,7 @@ const burgerIcon = {
 
         // movement burger-menu
         document.querySelector('.burger-menu').style.transform = 'translateX(-320px)';
-
+        document.querySelector('.modal').classList.add('modal-disabled');
         this.buttonOff = true;
       }
     });
@@ -540,7 +568,7 @@ const burgerIcon = {
     // add burger-icon to page
     document.querySelector('.header .wrapper').prepend(this.burgerBox);
 
-    document.querySelector('.burger-menu')
+    document.querySelector('.burger-menu');
   },
 };
 
@@ -548,6 +576,19 @@ const burgerIcon = {
 const links = document.querySelectorAll('.navigation-item');
 for (const link of links) {
   link.addEventListener('click', () => {
+    document.querySelector('.modal').classList.add('modal-disabled');
+
+    burgerIcon.firstLIne.style.transform = 'translateY(0) rotate(0)';
+    burgerIcon.secondLine.style.transform = 'translateX(0)';
+    burgerIcon.thirdLine.style.transform = 'translateY(0) rotate(0)';
+
+    // movement burger-menu
+    document.querySelector('.burger-menu').style.transform = 'translateX(-320px)';
+
+    burgerIcon.buttonOff = true;
+
+    document.querySelector('.navigation-item.active').classList.remove('active');
+    link.classList.add('active');
     categories.removeContent();
     if (link.getAttribute('data-number') === 'main') {
       categories.isHeadPage = true;
@@ -562,10 +603,22 @@ for (const link of links) {
 // add link to h1 title
 const title = document.querySelector('.title');
 title.addEventListener('click', () => {
+  document.querySelector('.navigation-item.active').classList.remove('active');
+  document.querySelector('div.burger-menu > ul > li:nth-child(1)').classList.add('active');
   categories.isHeadPage = true;
   playGame.makeVisibleButton();
   categories.removeContent();
   categories.init();
+});
+
+// add event listener to modal background
+document.querySelector('.modal').addEventListener('click', () => {
+  document.querySelector('.modal').classList.add('modal-disabled');
+  burgerIcon.firstLIne.style.transform = 'translateY(0) rotate(0)';
+  burgerIcon.secondLine.style.transform = 'translateX(0)';
+  burgerIcon.thirdLine.style.transform = 'translateY(0) rotate(0)';
+  document.querySelector('.burger-menu').style.transform = 'translateX(-320px)';
+  burgerIcon.buttonOff = true;
 });
 
 burgerIcon.init();
