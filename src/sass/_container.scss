@@ -61,6 +61,8 @@
   margin-bottom: 20px;
   border-radius: 10px;
   user-select: none;
+  animation-name: my-animation;
+  animation-duration: .5s; 
   span {
     font-size: 3.5rem;
     opacity: 0.5;
@@ -72,6 +74,11 @@
   &:active {
     transform: scale(0.9);
   }
+}
+
+@keyframes my-animation {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 .button-play.repeat {
