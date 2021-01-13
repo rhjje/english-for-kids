@@ -2,9 +2,11 @@
 import playGame from '../play-game';
 
 const toggle = {
+  switchBox: null,
+
   init() {
-    const switchBox = document.createElement('div');
-    switchBox.classList.add('switch-container', 'switch-disabled');
+    this.switchBox = document.createElement('div');
+    this.switchBox.classList.add('switch-container', 'switch-disabled');
 
     const trainMode = document.createElement('div');
     trainMode.classList.add('train-mode', 'active-mode');
@@ -43,11 +45,11 @@ const toggle = {
     switcher.appendChild(checkbox);
     switcher.appendChild(span);
 
-    switchBox.appendChild(trainMode);
-    switchBox.appendChild(switcher);
-    switchBox.appendChild(gameMode);
+    this.switchBox.appendChild(trainMode);
+    this.switchBox.appendChild(switcher);
+    this.switchBox.appendChild(gameMode);
 
-    document.querySelector('.container').prepend(switchBox);
+    document.querySelector('.container').prepend(this.switchBox);
   },
 };
 

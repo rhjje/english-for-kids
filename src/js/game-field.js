@@ -1,6 +1,6 @@
 import TitleCard from './components/title-card';
 import Card from './components/card';
-import toggle from './components/switch';
+import toogle from './components/switch';
 
 const gameField = {
   container: null,
@@ -30,7 +30,10 @@ const gameField = {
     this.container = document.createElement('div');
     this.container.className = 'wrapper';
     document.querySelector('.container').appendChild(this.container);
+    this.setTitleCards();
+  },
 
+  setTitleCards() {
     for (let i = 0; i < 8; i += 1) {
       const card = new TitleCard(this.images[i], this.title[i], i);
       this.container.appendChild(card.render());
@@ -46,8 +49,7 @@ const gameField = {
   },
 
   setContentCards(activeCard) {
-    const switcher = document.querySelector('.switch-container');
-    switcher.classList.remove('switch-disabled');
+    toogle.switchBox.classList.remove('switch-disabled');
 
     fetch('./assets/json/cards.json')
       .then((result) => result.json())
@@ -69,3 +71,5 @@ const gameField = {
 };
 
 gameField.init();
+
+export default gameField;
