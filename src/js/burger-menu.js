@@ -15,7 +15,10 @@ links.forEach((link) => {
       toogle.switchBox.classList.add('switch-disabled');
       gameField.setTitleCards();
     } else if (link.getAttribute('data-number') === 'statistics') {
-      statistics.buildingTable();
+      const stat = JSON.parse(localStorage.getItem('english-for-kids'));
+      const dataForTable = statistics.sortObject(stat);
+      statistics.buildingTable(dataForTable);
+      document.querySelector('th:nth-child(1)').innerHTML = '&darr; Word';
     } else {
       gameField.setContentCards(link.getAttribute('data-number'));
     }

@@ -47,7 +47,7 @@ const statistics = {
     localStorage.setItem('english-for-kids', `${JSON.stringify(stat)}`);
   },
 
-  buildingTable(content) {
+  buildingTable(data) {
     const container = document.querySelector('.container .wrapper');
     while (container.firstChild) {
       container.removeChild(container.firstChild);
@@ -91,9 +91,8 @@ const statistics = {
     });
 
     // rendering table
-    const stat = JSON.parse(localStorage.getItem('english-for-kids'));
     table.innerHTML = `<tr>
-      <th>&darr; Word</th>
+      <th>Word</th>
       <th>Translation</th>
       <th>Category</th>
       <th>Clicks</th>
@@ -101,8 +100,7 @@ const statistics = {
       <th>Wrong</th>
       <th>% errors</th>
     </tr>`;
-    const dataForTable = this.sortObject(stat);
-    dataForTable.forEach((row) => {
+    data.forEach((row) => {
       table.innerHTML += `<tr>
         <td>${row.word}</td>
         <td>${row.translation}</td>
@@ -117,7 +115,13 @@ const statistics = {
     const tableHead = document.querySelectorAll('th');
     tableHead.forEach((heading) => {
       heading.addEventListener('click', () => {
-
+        if (heading.innerText[0] === '↓') {
+          this.sortColumn(heading.innerText.slice(2), false);
+        } else if (heading.innerText[0] === '↑') {
+          this.sortColumn(heading.innerText.slice(2), true);
+        } else {
+          this.sortColumn(heading.innerText, true);
+        }
       });
     });
   },
@@ -136,8 +140,55 @@ const statistics = {
     return obj;
   },
 
-  sortColumn() {
+  sortColumn(key, directOrder) {
+    const stat = JSON.parse(localStorage.getItem('english-for-kids'));
+    if (key === '% errors') {
+      key = 'percent';
+    }
+    const dataForTable = this.sortObject(stat, key.toLowerCase());
 
+    let arrow;
+    if (directOrder && key.match(/Word|Translation|Category/)) {
+      arrow = '&darr;';
+      this.buildingTable(dataForTable);
+    } else if (key.match(/Word|Translation|Category/)) {
+      arrow = '&uarr;';
+      this.buildingTable(dataForTable.reverse());
+    } else if (directOrder) {
+      arrow = '&darr;';
+      this.buildingTable(dataForTable.reverse());
+    } else {
+      arrow = '&uarr;';
+      this.buildingTable(dataForTable);
+    }
+
+    let title;
+    switch (key) {
+      case 'Word':
+        title = document.querySelector('th:first-child');
+        break;
+      case 'Translation':
+        title = document.querySelector('th:nth-child(2)');
+        break;
+      case 'Category':
+        title = document.querySelector('th:nth-child(3)');
+        break;
+      case 'Clicks':
+        title = document.querySelector('th:nth-child(4)');
+        break;
+      case 'Correct':
+        title = document.querySelector('th:nth-child(5)');
+        break;
+      case 'Wrong':
+        title = document.querySelector('th:nth-child(6)');
+        break;
+      case 'percent':
+        title = document.querySelector('th:last-child');
+        break;
+      default:
+        break;
+    }
+    title.innerHTML = `${arrow} ${title.innerHTML}`;
   },
 };
 
