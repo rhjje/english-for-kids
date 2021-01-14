@@ -6,7 +6,7 @@ const toggle = {
 
   init() {
     this.switchBox = document.createElement('div');
-    this.switchBox.classList.add('switch-container', 'switch-disabled');
+    this.switchBox.classList.add('switch-container');
 
     const trainMode = document.createElement('div');
     trainMode.classList.add('train-mode', 'active-mode');
@@ -51,8 +51,13 @@ const toggle = {
 
     document.querySelector('.container').prepend(this.switchBox);
   },
-};
 
-toggle.init();
+  removeSwitcher() {
+    const switcher = document.querySelector('.switch-container');
+    if (switcher) {
+      switcher.parentNode.removeChild(switcher);
+    }
+  },
+};
 
 export default toggle;

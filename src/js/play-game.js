@@ -1,21 +1,18 @@
 /* eslint-disable no-param-reassign */
-import statistics from './stat';
+import statistics from './statistics';
 import gameField from './game-field';
 
 const playGame = {
   startGameButton: null,
   boxStars: null,
   currentWords: [],
-  rating: [],
   correctAnswer: null,
   wrongAnswer: null,
   soundWin: null,
   soundLose: null,
   repeat: false,
   currentWord: null,
-  currentSound: null,
   mistakes: 0,
-  attributeCards: [],
   wordsUsed: [],
 
   init() {
@@ -88,7 +85,6 @@ const playGame = {
         } else if (!this.wordsUsed.includes(card.getAttribute('data-name'))) {
           statistics.countingStatistics(this.currentWords[currentWord], 'wrong');
           this.mistakes += 1;
-
           const winStars = document.createElement('img');
           winStars.src = './assets/icons/star.svg';
           this.boxStars.appendChild(winStars);
@@ -101,32 +97,71 @@ const playGame = {
 
   finishGame() {
     gameField.removeContent();
+    this.deleteGameElements();
 
-    document.querySelector('.button-play > span').innerText = 'Start game';
-    this.repeat = false;
-    this.startGameButton.classList.remove('repeat');
-    this.startGameButton.classList.add('disabled');
-
-    const winScreen = document.createElement('div');
-    winScreen.classList.add('win-image');
-    const span = document.createElement('span');
-    span.classList.add('win-title');
-    const img = document.createElement('img');
-
+    let span;
+    let src;
     if (this.mistakes === 0) {
-      span.innerText = 'Congratulations! You win!';
-      img.src = './assets/icons/success.svg';
+      span = 'Congratulations! You win!';
+      src = './assets/icons/success.svg';
       this.soundWin.play();
     } else {
-      span.innerHTML = `You lost(: Train and try again!</br>
+      span = `You lost(: Train and try again!</br>
         You made ${this.mistakes} mistake(s).`;
-      img.src = './assets/icons/failure.svg';
+      src = './assets/icons/failure.svg';
       this.soundLose.play();
     }
 
-    winScreen.append(img);
-    gameField.container.appendChild(span);
-    gameField.container.appendChild(winScreen);
+    const finishScreen = `<span class="win-title">${span}</span>
+    <div class="win-image"><img src="${src}"></div>`;
+    gameField.container.innerHTML += finishScreen;
+
+    const buttonsFinish = document.createElement('div');
+    buttonsFinish.classList.add('buttons-finish');
+    const newGameButton = document.createElement('button');
+    newGameButton.classList.add('new-game');
+    newGameButton.innerText = 'New game';
+    const mainMenuButton = document.createElement('button');
+    mainMenuButton.classList.add('main-menu');
+    mainMenuButton.innerText = 'Main menu';
+    buttonsFinish.appendChild(newGameButton);
+    buttonsFinish.appendChild(mainMenuButton);
+
+    newGameButton.addEventListener('click', () => {
+      gameField.removeContent();
+      gameField.setContentCards(gameField.activeCard);
+    });
+
+    mainMenuButton.addEventListener('click', () => {
+      gameField.removeContent();
+      gameField.setTitleCards();
+
+      document.querySelector('.navigation-item.active').classList.remove('active');
+      document.querySelector('.navigation-item:first-child').classList.add('active');
+    });
+
+    gameField.container.appendChild(buttonsFinish);
+    this.mistakes = 0;
+    // gameField.container.innerHTML += `<div class="buttons-finish">
+    //   <button class="new-game">New game</button>
+    //   <button class="main-menu">Main menu</button>
+    // </div>`;
+  },
+
+  deleteGameElements() {
+    const switcher = document.querySelector('.switch-container');
+    if (switcher) {
+      switcher.parentNode.removeChild(switcher);
+    }
+    if (this.startGameButton) {
+      this.startGameButton.parentNode.removeChild(this.startGameButton);
+    }
+    if (this.boxStars) {
+      this.boxStars.parentNode.removeChild(this.boxStars);
+    }
+    this.repeat = false;
+    this.currentWords = [];
+    this.currentWord = null;
   },
 };
 

@@ -1,4 +1,4 @@
-import statistics from '../stat';
+import statistics from '../statistics';
 
 export default class Card {
   constructor(image, word, translation, number) {

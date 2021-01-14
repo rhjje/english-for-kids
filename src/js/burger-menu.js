@@ -1,7 +1,8 @@
 import gameField from './game-field';
 import burgerIcon from './components/burger-icon';
 import toogle from './components/switch';
-import statistics from './stat';
+import statistics from './statistics';
+import playGame from './play-game';
 
 const links = document.querySelectorAll('.navigation-item');
 links.forEach((link) => {
@@ -12,9 +13,10 @@ links.forEach((link) => {
     link.classList.add('active');
 
     if (link.getAttribute('data-number') === 'main') {
-      toogle.switchBox.classList.add('switch-disabled');
+      toogle.removeSwitcher();
       gameField.setTitleCards();
     } else if (link.getAttribute('data-number') === 'statistics') {
+      toogle.removeSwitcher();
       const stat = JSON.parse(localStorage.getItem('english-for-kids'));
       const dataForTable = statistics.sortObject(stat);
       statistics.buildingTable(dataForTable);
@@ -23,4 +25,14 @@ links.forEach((link) => {
       gameField.setContentCards(link.getAttribute('data-number'));
     }
   });
+});
+
+const title = document.querySelector('.title');
+title.addEventListener('click', () => {
+  gameField.removeContent();
+  playGame.deleteGameElements();
+  gameField.setTitleCards();
+
+  document.querySelector('.navigation-item.active').classList.remove('active');
+  document.querySelector('.navigation-item:first-child').classList.add('active');
 });

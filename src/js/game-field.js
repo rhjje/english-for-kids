@@ -4,6 +4,7 @@ import toogle from './components/switch';
 
 const gameField = {
   container: null,
+  activeCard: null,
   title: {
     0: 'Action (set A)',
     1: 'Action (set B)',
@@ -43,13 +44,14 @@ const gameField = {
     cards.forEach((card) => {
       card.addEventListener('click', () => {
         this.removeContent();
-        this.setContentCards(card.getAttribute('data-number'));
+        this.activeCard = card.getAttribute('data-number');
+        this.setContentCards(this.activeCard);
       });
     });
   },
 
   setContentCards(activeCard) {
-    toogle.switchBox.classList.remove('switch-disabled');
+    toogle.init();
 
     fetch('./assets/json/cards.json')
       .then((result) => result.json())
