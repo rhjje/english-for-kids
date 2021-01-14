@@ -28,7 +28,7 @@ const gameField = {
 
   init() {
     this.container = document.createElement('div');
-    this.container.className = 'wrapper';
+    this.container.classList.add('wrapper');
     document.querySelector('.container').appendChild(this.container);
     this.setTitleCards();
   },

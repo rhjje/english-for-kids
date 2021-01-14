@@ -1,3 +1,5 @@
+import statistics from '../stat';
+
 export default class Card {
   constructor(image, word, translation, number) {
     this.image = image;
@@ -28,8 +30,11 @@ export default class Card {
     cardFrontName.classList.add('card-word__front-name');
     cardFrontName.innerText = `${this.word}`;
 
+    const gameMode = document.querySelector('label > input');
+
     this.cardFront.addEventListener('click', (event) => {
-      if (!event.target.classList.contains('reverse-button')) {
+      if (!event.target.classList.contains('reverse-button') && !gameMode.classList.contains('checked')) {
+        statistics.countingStatistics(this.word, 'clicks');
         this.toVoice();
       }
     });
@@ -68,12 +73,9 @@ export default class Card {
   }
 
   toVoice() {
-    const gameMode = document.querySelector('label > input');
-    if (!gameMode.classList.contains('checked')) {
-      const audio = new Audio(`./assets/sounds/${this.word}.mp3`);
-      audio.load();
-      audio.play();
-    }
+    const audio = new Audio(`./assets/sounds/${this.word}.mp3`);
+    audio.load();
+    audio.play();
   }
 
   reverseCard() {

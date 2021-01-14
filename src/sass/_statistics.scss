@@ -34,146 +34,170 @@
   width: 80vw;
   border: 1px solid rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.3);
+border-collapse: collapse;
 }
 
-.table-head {
+tbody:nth-child(2n + 1) {
+  background-color: rgb(231, 204, 181);
+}
+
+tbody:first-child {
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  user-select: none;
   background-color: #afaa9b;
-  span {
-    text-align: center;
-    display: inline-block;
-    width: calc(100% / 7);
-    font-size: 1.6rem;
-    line-height: 160%;
-  }
+}
+
+th, td {
+  height: 22px;
+  text-align: center;
+  font-size: 1.6rem;
+  line-height: 160%;
+}
+
+th {
+  user-select: none;
   &:hover {
     cursor: pointer;
   }
 }
 
-.content-part {
-  display: flex;
-  div {
-    width: calc(100% / 7);
-    div {
-      width: 100%;
-      font-size: 1.6rem;
-      line-height: 160%;
-      text-align: center;
-    }
-    div:nth-child(2n) {
-      background-color: rgb(231, 204, 181);
-    }
-  }
-}
+// .table-head {
+//   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+//   user-select: none;
+//   background-color: #afaa9b;
+//   span {
+//     text-align: center;
+//     display: inline-block;
+//     width: calc(100% / 7);
+//     font-size: 1.6rem;
+//     line-height: 160%;
+//   }
+//   &:hover {
+//     cursor: pointer;
+//   }
+// }
 
-@media screen and (max-width: 1000px) {
-  .table {
-    width: 95vw;
-  }
-  .table-head {
-    span {
-      font-size: 1.4rem;
-    }
-  }
-  .content-part {
-    div {
-      div {
-        font-size: 1.4rem;
-      }
-    }
-  }
-}
+// .content-part {
+//   display: flex;
+//   div {
+//     width: calc(100% / 7);
+//     div {
+//       width: 100%;
+//       font-size: 1.6rem;
+//       line-height: 160%;
+//       text-align: center;
+//     }
+//     div:nth-child(2n) {
+//       background-color: rgb(231, 204, 181);
+//     }
+//   }
+// }
 
-@media screen and (max-width: 767px) {
-  .table-head {
-    span {
-      font-size: 1.2rem;
-    }
-  }
-  .content-part {
-    div {
-      div {
-        font-size: 1.2rem;
-      }
-    }
-  }
-}
+// @media screen and (max-width: 1000px) {
+//   .table {
+//     width: 95vw;
+//   }
+//   .table-head {
+//     span {
+//       font-size: 1.4rem;
+//     }
+//   }
+//   .content-part {
+//     div {
+//       div {
+//         font-size: 1.4rem;
+//       }
+//     }
+//   }
+// }
 
-@media screen and (max-width: 640px) {
-  .table-head {
-    span {
-      font-size: 1rem;
-    }
-  }
-  .content-part {
-    div {
-      div {
-        font-size: 1rem;
-      }
-    }
-  }
-}
+// @media screen and (max-width: 767px) {
+//   .table-head {
+//     span {
+//       font-size: 1.2rem;
+//     }
+//   }
+//   .content-part {
+//     div {
+//       div {
+//         font-size: 1.2rem;
+//       }
+//     }
+//   }
+// }
 
-@media screen and (max-width: 530px) {
-  .table {
-    width: 380px;
-  }
-  body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(1),
-  body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(2),
-  body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(3) {
-    width: 60px;
-  }
+// @media screen and (max-width: 640px) {
+//   .table-head {
+//     span {
+//       font-size: 1rem;
+//     }
+//   }
+//   .content-part {
+//     div {
+//       div {
+//         font-size: 1rem;
+//       }
+//     }
+//   }
+// }
 
-  body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(4),
-  body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(5),
-  body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(6),
-  body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(7) {
-    width: 50px;
-  }
+// @media screen and (max-width: 530px) {
+//   .table {
+//     width: 380px;
+//   }
+//   body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(1),
+//   body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(2),
+//   body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(3) {
+//     width: 60px;
+//   }
 
-  body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(1),
-  body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(2),
-  body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(3) {
-    width: 60px;
-  }
+//   body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(4),
+//   body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(5),
+//   body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(6),
+//   body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(7) {
+//     width: 50px;
+//   }
 
-  body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(4),
-  body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(5),
-  body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(6),
-  body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(7) {
-    width: 50px;
-  }
+//   body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(1),
+//   body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(2),
+//   body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(3) {
+//     width: 60px;
+//   }
 
-  body > section > div.wrapper > div > div.table > div.content-part > div > div {
-    height: 16px;
-    overflow: hidden;
-  }
-}
+//   body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(4),
+//   body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(5),
+//   body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(6),
+//   body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(7) {
+//     width: 50px;
+//   }
 
-@media screen and (max-width: 410px) {
-  .table {
-    width: 300px;
-  }
-  .table-head {
-    height: 16px;
-    overflow: hidden;
-    span {
-      height: 16px;
-      overflow: hidden;
-    }}
-  body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(4),
-  body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(5),
-  body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(6),
-  body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(7) {
-    width: 30px;
-  }
+//   body > section > div.wrapper > div > div.table > div.content-part > div > div {
+//     height: 16px;
+//     overflow: hidden;
+//   }
+// }
 
-  body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(4),
-  body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(5),
-  body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(6),
-  body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(7) {
-    width: 30px;
-  }
-}
+// @media screen and (max-width: 410px) {
+//   .table {
+//     width: 300px;
+//   }
+//   .table-head {
+//     height: 16px;
+//     overflow: hidden;
+//     span {
+//       height: 16px;
+//       overflow: hidden;
+//     }}
+//   body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(4),
+//   body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(5),
+//   body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(6),
+//   body > section > div.wrapper > div > div.table > div.table-head > span:nth-child(7) {
+//     width: 30px;
+//   }
+
+//   body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(4),
+//   body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(5),
+//   body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(6),
+//   body > section > div.wrapper > div > div.table > div.content-part > div:nth-child(7) {
+//     width: 30px;
+//   }
+// }

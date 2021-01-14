@@ -1,4 +1,7 @@
 /* eslint-disable no-param-reassign */
+import statistics from './stat';
+import gameField from './game-field';
+
 const playGame = {
   startGameButton: null,
   boxStars: null,
@@ -13,6 +16,7 @@ const playGame = {
   currentSound: null,
   mistakes: 0,
   attributeCards: [],
+  wordsUsed: [],
 
   init() {
     this.startGameButton = document.createElement('div');
@@ -64,6 +68,8 @@ const playGame = {
     currentCards.forEach((card) => {
       card.addEventListener('click', () => {
         if (card.getAttribute('data-name') === this.currentWords[currentWord]) {
+          this.wordsUsed.push(this.currentWords[currentWord]);
+          statistics.countingStatistics(this.currentWords[currentWord], 'correct');
           this.correctAnswer.play();
           card.style.filter = 'blur(5px)';
 
@@ -79,7 +85,8 @@ const playGame = {
               this.finishGame();
             }, 1000);
           }
-        } else {
+        } else if (!this.wordsUsed.includes(card.getAttribute('data-name'))) {
+          statistics.countingStatistics(this.currentWords[currentWord], 'wrong');
           this.mistakes += 1;
 
           const winStars = document.createElement('img');
@@ -93,10 +100,7 @@ const playGame = {
   },
 
   finishGame() {
-    const currentCards = document.querySelector('.container .wrapper');
-    while (currentCards.firstChild) {
-      currentCards.removeChild(currentCards.firstChild);
-    }
+    gameField.removeContent();
 
     document.querySelector('.button-play > span').innerText = 'Start game';
     this.repeat = false;
@@ -121,8 +125,8 @@ const playGame = {
     }
 
     winScreen.append(img);
-    currentCards.appendChild(span);
-    currentCards.appendChild(winScreen);
+    gameField.container.appendChild(span);
+    gameField.container.appendChild(winScreen);
   },
 };
 

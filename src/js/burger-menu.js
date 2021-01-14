@@ -1,6 +1,7 @@
 import gameField from './game-field';
 import burgerIcon from './components/burger-icon';
 import toogle from './components/switch';
+import statistics from './stat';
 
 const links = document.querySelectorAll('.navigation-item');
 links.forEach((link) => {
@@ -13,6 +14,8 @@ links.forEach((link) => {
     if (link.getAttribute('data-number') === 'main') {
       toogle.switchBox.classList.add('switch-disabled');
       gameField.setTitleCards();
+    } else if (link.getAttribute('data-number') === 'statistics') {
+      statistics.buildingTable();
     } else {
       gameField.setContentCards(link.getAttribute('data-number'));
     }
