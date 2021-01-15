@@ -8,6 +8,9 @@
   align-items: center;
   justify-content: center;
   border-radius: 30px;
+}
+
+.active-card {
   &:hover {
     cursor: pointer;
     transform:  scale(1.1) !important;

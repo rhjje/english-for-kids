@@ -59,17 +59,13 @@ const statistics = {
     const buttons = document.createElement('div');
     buttons.classList.add('panel-buttons');
 
-    const repeatButton = document.createElement('div');
+    const repeatButton = document.createElement('button');
     repeatButton.classList.add('repeat-button');
-    const spanRepeat = document.createElement('span');
-    spanRepeat.innerText = 'Repeat difficult words';
-    repeatButton.appendChild(spanRepeat);
+    repeatButton.innerText = 'Repeat difficult words';
 
-    const resetButton = document.createElement('div');
+    const resetButton = document.createElement('button');
     resetButton.classList.add('reset-button');
-    const spanReset = document.createElement('span');
-    spanReset.innerText = 'Reset';
-    resetButton.appendChild(spanReset);
+    resetButton.innerText = 'Reset';
 
     buttons.appendChild(repeatButton);
     buttons.appendChild(resetButton);

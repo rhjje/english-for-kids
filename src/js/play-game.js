@@ -21,11 +21,9 @@ const playGame = {
     this.currentWord = null;
     this.wordsUsed = [];
 
-    this.startGameButton = document.createElement('div');
+    this.startGameButton = document.createElement('button');
     this.startGameButton.classList.add('button-play');
-    const title = document.createElement('span');
-    title.innerText = 'Start game';
-    this.startGameButton.appendChild(title);
+    this.startGameButton.innerText = 'Start game';
 
     this.boxStars = document.createElement('div');
     this.boxStars.classList.add('box-stars');
@@ -43,7 +41,6 @@ const playGame = {
         this.currentWord.play();
       } else {
         this.startGameButton.classList.add('repeat');
-        document.querySelector('.button-play > span').innerText = '';
         this.repeat = true;
         this.play();
       }
@@ -78,6 +75,9 @@ const playGame = {
           const winStars = document.createElement('img');
           winStars.src = './assets/icons/star-win.svg';
           this.boxStars.appendChild(winStars);
+
+          const activeCard = document.querySelector(`.card-word:nth-child(${+card.getAttribute('data-number') + 1})`);
+          activeCard.classList.remove('active-card');
 
           currentWord += 1;
           if (currentWord < 8) {

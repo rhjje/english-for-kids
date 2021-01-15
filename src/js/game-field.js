@@ -77,6 +77,8 @@ const gameField = {
 
     const input = document.querySelector('input[type=checkbox]');
     input.addEventListener('change', () => {
+      document.querySelector('.train-mode').classList.toggle('active-mode');
+      document.querySelector('.game-mode').classList.toggle('active-mode');
       const cards = document.querySelectorAll('.card-word__front-image');
       if (input.checked) {
         cards.forEach((card) => {

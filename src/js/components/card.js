@@ -13,7 +13,7 @@ export default class Card {
 
   render() {
     this.card = document.createElement('div');
-    this.card.classList.add('card-word');
+    this.card.classList.add('card-word', 'active-card');
     const randomRotate = (Math.random() * (3 - (-3)) - 3).toFixed(1);
     this.card.setAttribute('style', `transform: rotate(${randomRotate}deg);`);
 
