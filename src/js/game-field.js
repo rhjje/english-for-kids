@@ -1,9 +1,10 @@
+/* eslint-disable no-param-reassign */
 import TitleCard from './components/title-card';
 import Card from './components/card';
-import toogle from './components/switch';
+import Switcher from './components/switch';
+import playGame from './play-game';
 
 const gameField = {
-  container: null,
   activeCard: null,
   title: {
     0: 'Action (set A)',
@@ -27,18 +28,20 @@ const gameField = {
     7: './assets/images/categories/emotion.jpg',
   },
 
-  init() {
-    this.container = document.createElement('div');
-    this.container.classList.add('wrapper');
-    document.querySelector('.container').appendChild(this.container);
-    this.setTitleCards();
-  },
-
   setTitleCards() {
+    this.removeContent();
+    const container = document.createElement('div');
+    container.classList.add('wrapper');
+    document.querySelector('.container').appendChild(container);
+
+    const cardsContainer = document.createElement('div');
+    cardsContainer.classList.add('cards');
+
     for (let i = 0; i < 8; i += 1) {
       const card = new TitleCard(this.images[i], this.title[i], i);
-      this.container.appendChild(card.render());
+      cardsContainer.innerHTML += card.render();
     }
+    container.appendChild(cardsContainer);
 
     const cards = document.querySelectorAll('.card');
     cards.forEach((card) => {
@@ -51,7 +54,14 @@ const gameField = {
   },
 
   setContentCards(activeCard) {
-    toogle.init();
+    this.removeContent();
+    const container = document.createElement('div');
+    container.classList.add('wrapper');
+    container.innerHTML += Switcher.render();
+    document.querySelector('.container').appendChild(container);
+
+    const cardsContainer = document.createElement('div');
+    cardsContainer.classList.add('cards');
 
     fetch('./assets/json/cards.json')
       .then((result) => result.json())
@@ -59,19 +69,39 @@ const gameField = {
         const data = result[activeCard];
         for (let i = 0; i < data.length; i += 1) {
           const card = new Card(data[i].image, data[i].word, data[i].translation, i);
-          this.container.appendChild(card.render());
+          cardsContainer.appendChild(card.render());
         }
+
+        container.appendChild(cardsContainer);
       });
+
+    const input = document.querySelector('input[type=checkbox]');
+    input.addEventListener('change', () => {
+      const cards = document.querySelectorAll('.card-word');
+      if (input.checked) {
+        cards.forEach((card) => {
+          card.style.height = '200px';
+        });
+        playGame.init();
+      } else {
+        cards.forEach((card) => {
+          card.style.height = '280px';
+        });
+
+        document.querySelector('.container .wrapper').removeChild(document.querySelector('.button-play'));
+        document.querySelector('.container .wrapper').removeChild(document.querySelector('.box-stars'));
+      }
+    });
   },
 
   removeContent() {
-    const currentCards = document.querySelector('.container .wrapper');
-    while (currentCards.firstChild) {
-      currentCards.removeChild(currentCards.firstChild);
+    const currentContent = document.querySelector('.container');
+    while (currentContent.firstChild) {
+      currentContent.removeChild(currentContent.firstChild);
     }
   },
 };
 
-gameField.init();
+gameField.setTitleCards();
 
 export default gameField;

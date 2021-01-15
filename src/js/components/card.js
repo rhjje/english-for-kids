@@ -24,7 +24,9 @@ export default class Card {
     cardFrontImage.classList.add('card-word__front-image');
     const imgFront = document.createElement('img');
     imgFront.src = `./${this.image}`;
-    cardFrontImage.appendChild(imgFront);
+    imgFront.addEventListener('load', () => {
+      cardFrontImage.appendChild(imgFront);
+    });
 
     const cardFrontName = document.createElement('span');
     cardFrontName.classList.add('card-word__front-name');
@@ -33,7 +35,7 @@ export default class Card {
     const gameMode = document.querySelector('label > input');
 
     this.cardFront.addEventListener('click', (event) => {
-      if (!event.target.classList.contains('reverse-button') && !gameMode.classList.contains('checked')) {
+      if (!event.target.classList.contains('reverse-button') && !gameMode.checked) {
         statistics.countingStatistics(this.word, 'clicks');
         this.toVoice();
       }
@@ -57,7 +59,9 @@ export default class Card {
     cardBackImage.classList.add('card-word__back-image');
     const img = document.createElement('img');
     img.src = `./${this.image}`;
-    cardBackImage.appendChild(img);
+    img.addEventListener('load', () => {
+      cardBackImage.appendChild(img);
+    });
 
     const cardBackName = document.createElement('span');
     cardBackName.classList.add('card-word__back-name');

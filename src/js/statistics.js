@@ -48,13 +48,13 @@ const statistics = {
   },
 
   buildingTable(data) {
-    const container = document.querySelector('.container .wrapper');
+    const container = document.querySelector('.container');
     while (container.firstChild) {
       container.removeChild(container.firstChild);
     }
 
     const statContainer = document.createElement('div');
-    statContainer.classList.add('stat-container');
+    statContainer.classList.add('wrapper');
 
     const buttons = document.createElement('div');
     buttons.classList.add('panel-buttons');

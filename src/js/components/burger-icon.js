@@ -39,11 +39,6 @@ const burgerIcon = {
       }
     });
 
-    // burgerBox.addEventListener('mouseenter', () => {
-    //   console.log('asdasdas');
-    // });
-
-    // add burger-icon to page
     document.querySelector('.header .wrapper').prepend(this.burgerBox);
   },
 };

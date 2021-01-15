@@ -10,12 +10,17 @@ const playGame = {
   wrongAnswer: null,
   soundWin: null,
   soundLose: null,
-  repeat: false,
+  repeat: null,
   currentWord: null,
   mistakes: 0,
   wordsUsed: [],
 
   init() {
+    this.repeat = false;
+    this.currentWords = [];
+    this.currentWord = null;
+    this.wordsUsed = [];
+
     this.startGameButton = document.createElement('div');
     this.startGameButton.classList.add('button-play');
     const title = document.createElement('span');
@@ -30,8 +35,8 @@ const playGame = {
     this.soundWin = new Audio('./assets/sounds/success.mp3');
     this.soundLose = new Audio('./assets/sounds/failure.mp3');
 
-    document.querySelector('.container').appendChild(this.startGameButton);
-    document.querySelector('.container').appendChild(this.boxStars);
+    document.querySelector('.container .wrapper').appendChild(this.startGameButton);
+    document.querySelector('.container .wrapper').appendChild(this.boxStars);
 
     this.startGameButton.addEventListener('click', () => {
       if (this.repeat) {
@@ -97,7 +102,6 @@ const playGame = {
 
   finishGame() {
     gameField.removeContent();
-    this.deleteGameElements();
 
     let span;
     let src;
@@ -111,10 +115,10 @@ const playGame = {
       src = './assets/icons/failure.svg';
       this.soundLose.play();
     }
-
+    const container = document.querySelector('.container');
     const finishScreen = `<span class="win-title">${span}</span>
     <div class="win-image"><img src="${src}"></div>`;
-    gameField.container.innerHTML += finishScreen;
+    container.innerHTML += finishScreen;
 
     const buttonsFinish = document.createElement('div');
     buttonsFinish.classList.add('buttons-finish');
@@ -128,40 +132,18 @@ const playGame = {
     buttonsFinish.appendChild(mainMenuButton);
 
     newGameButton.addEventListener('click', () => {
-      gameField.removeContent();
       gameField.setContentCards(gameField.activeCard);
     });
 
     mainMenuButton.addEventListener('click', () => {
-      gameField.removeContent();
       gameField.setTitleCards();
 
       document.querySelector('.navigation-item.active').classList.remove('active');
       document.querySelector('.navigation-item:first-child').classList.add('active');
     });
 
-    gameField.container.appendChild(buttonsFinish);
+    container.appendChild(buttonsFinish);
     this.mistakes = 0;
-    // gameField.container.innerHTML += `<div class="buttons-finish">
-    //   <button class="new-game">New game</button>
-    //   <button class="main-menu">Main menu</button>
-    // </div>`;
-  },
-
-  deleteGameElements() {
-    const switcher = document.querySelector('.switch-container');
-    if (switcher) {
-      switcher.parentNode.removeChild(switcher);
-    }
-    if (this.startGameButton) {
-      this.startGameButton.parentNode.removeChild(this.startGameButton);
-    }
-    if (this.boxStars) {
-      this.boxStars.parentNode.removeChild(this.boxStars);
-    }
-    this.repeat = false;
-    this.currentWords = [];
-    this.currentWord = null;
   },
 };
 

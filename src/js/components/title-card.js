@@ -6,23 +6,10 @@ export default class TitleCard {
   }
 
   render() {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.setAttribute('data-number', `${this.number}`);
-
-    const cardImage = document.createElement('div');
-    cardImage.classList.add('card__image');
-
-    const img = document.createElement('img');
-    img.src = `${this.image}`;
-    cardImage.appendChild(img);
-
-    const cardName = document.createElement('span');
-    cardName.classList.add('card__name');
-    cardName.innerText = `${this.title}`;
-
-    card.appendChild(cardImage);
-    card.appendChild(cardName);
+    const card = `<div class="card" data-number="${this.number}">
+      <div class="card__image"><img src="${this.image}"></div>
+      <span class="card__name">${this.title}</span>
+    </div>`;
 
     return card;
   }
