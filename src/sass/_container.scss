@@ -1,65 +1,131 @@
 .container {
-  background-color: #f7f7f5;
-  min-height: calc(100vh - 200px);
-  z-index: 5;
+  background-image: url('../assets/icons/brick.png');
+  min-height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
   .wrapper {
     width: 90vw;
+    max-width: 1400px;
+    height: calc(100vh - 100px);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
   }
 }
 
-.cards {
+.cards-title {
+  position: relative;
   margin: 30px;
+  width: 70%;
+  height: calc(100vh - 160px);
+}
+
+.subtitle {
+  position: absolute;
+  font-size: 6rem;
+  top: calc(50% - (5rem / 2));
+  left: calc(50% - 200px);
+  font-weight: 400;
+  font-family: "Amatic SC", cursive;
+  user-select: none;
+}
+
+.cards {
   width: 100%;
+  margin-top: 120px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 80px;
 }
 
 .card {
-  width: 300px;
-  height: 280px;
-  background-color: burlywood;
-  transition: 0.5s;
-  border-radius: 10px;
-  overflow: hidden;
+  position: absolute;
+  height: 245px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.3);
+  border-radius: 100px 100px 40px 40px;
+  transition: 0.3s;
   &:hover {
     transition: 0.3s;
-    cursor: pointer;
-    box-shadow: 0px 0px 10px 7px rgba(0,0,0,0.3);
+    transform: scale(1.1);
   }
 }
 
+.card:first-child {
+  left: calc(50% - 100px);
+}
+
+.card:nth-child(2) {
+  top: 10%;
+  left: 66%;
+}
+
+.card:nth-child(3) {
+  top: calc(50% - 245px / 2);
+  left: calc(100% - 200px);
+}
+
+.card:nth-child(4) {
+  top: 66%;
+  left: 68%;
+}
+
+.card:nth-child(5) {
+  top: calc(100% - 245px);
+  left: calc(50% - 100px);
+}
+
+.card:nth-child(6) {
+  top: 66%;
+  left: 10%;
+}
+
+.card:nth-child(7) {
+  top: calc(50% - 245px / 2);
+}
+
+.card:nth-child(8) {
+  top: 10%;
+  left: 12%;
+}
+
 .card__image {
-  width: 100%;
-  height: auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  transition: 0.3s;
+  box-shadow: 0px 0px 10px 7px rgba(0,0,0,0.3);
+  &:hover {
+    cursor: pointer;
+  }
   img {
-    width: 100%;
-    height: auto;
-    max-height: 200px;
+    width: auto;
+    height: 100%;
   }
 }
 
 .card__name {
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 2.4rem;
+  font-family: "Amatic SC",cursive;
+  font-weight: 700;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .button-play {
+  position: absolute;
+  top: calc(100vh - 240px);
   width: 200px;
   height: 60px;
   background-color: rgb(196, 127, 67);
@@ -103,6 +169,8 @@
 }
 
 .box-stars {
+  position: absolute;
+  top: calc(100vh - 170px);
   max-width: 700px;
   height: 50px;
   display: flex;

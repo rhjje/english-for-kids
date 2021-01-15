@@ -35,12 +35,13 @@ const gameField = {
     document.querySelector('.container').appendChild(container);
 
     const cardsContainer = document.createElement('div');
-    cardsContainer.classList.add('cards');
+    cardsContainer.classList.add('cards-title');
 
     for (let i = 0; i < 8; i += 1) {
       const card = new TitleCard(this.images[i], this.title[i], i);
       cardsContainer.innerHTML += card.render();
     }
+    cardsContainer.innerHTML += '<div class="subtitle">Hello! choose a category:</div>';
     container.appendChild(cardsContainer);
 
     const cards = document.querySelectorAll('.card');
@@ -76,15 +77,15 @@ const gameField = {
 
     const input = document.querySelector('input[type=checkbox]');
     input.addEventListener('change', () => {
-      const cards = document.querySelectorAll('.card-word');
+      const cards = document.querySelectorAll('.card-word__front-image');
       if (input.checked) {
         cards.forEach((card) => {
-          card.style.height = '200px';
+          card.style.height = '260px';
         });
         playGame.init();
       } else {
         cards.forEach((card) => {
-          card.style.height = '280px';
+          card.style.height = '200px';
         });
 
         document.querySelector('.container .wrapper').removeChild(document.querySelector('.button-play'));

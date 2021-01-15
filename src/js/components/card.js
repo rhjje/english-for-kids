@@ -14,6 +14,8 @@ export default class Card {
   render() {
     this.card = document.createElement('div');
     this.card.classList.add('card-word');
+    const randomRotate = (Math.random() * (3 - (-3)) - 3).toFixed(1);
+    this.card.setAttribute('style', `transform: rotate(${randomRotate}deg);`);
 
     this.cardFront = document.createElement('div');
     this.cardFront.classList.add('card-word__front');
@@ -26,7 +28,7 @@ export default class Card {
     imgFront.src = `./${this.image}`;
     cardFrontImage.appendChild(imgFront);
 
-    const cardFrontName = document.createElement('span');
+    const cardFrontName = document.createElement('div');
     cardFrontName.classList.add('card-word__front-name');
     cardFrontName.innerText = `${this.word}`;
 
@@ -59,7 +61,7 @@ export default class Card {
     img.src = `./${this.image}`;
     cardBackImage.appendChild(img);
 
-    const cardBackName = document.createElement('span');
+    const cardBackName = document.createElement('div');
     cardBackName.classList.add('card-word__back-name');
     cardBackName.innerText = `${this.translation}`;
 
