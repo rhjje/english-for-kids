@@ -71,7 +71,6 @@ const gameField = {
           const card = new Card(data[i].image, data[i].word, data[i].translation, i);
           cardsContainer.appendChild(card.render());
         }
-
         container.appendChild(cardsContainer);
       });
 

@@ -24,9 +24,7 @@ export default class Card {
     cardFrontImage.classList.add('card-word__front-image');
     const imgFront = document.createElement('img');
     imgFront.src = `./${this.image}`;
-    imgFront.addEventListener('load', () => {
-      cardFrontImage.appendChild(imgFront);
-    });
+    cardFrontImage.appendChild(imgFront);
 
     const cardFrontName = document.createElement('span');
     cardFrontName.classList.add('card-word__front-name');
@@ -59,9 +57,7 @@ export default class Card {
     cardBackImage.classList.add('card-word__back-image');
     const img = document.createElement('img');
     img.src = `./${this.image}`;
-    img.addEventListener('load', () => {
-      cardBackImage.appendChild(img);
-    });
+    cardBackImage.appendChild(img);
 
     const cardBackName = document.createElement('span');
     cardBackName.classList.add('card-word__back-name');
