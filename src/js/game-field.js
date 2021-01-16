@@ -29,6 +29,7 @@ const gameField = {
   },
 
   setTitleCards() {
+    playGame.repeatMode = false;
     this.removeContent();
     const container = document.createElement('div');
     container.classList.add('wrapper');
@@ -55,6 +56,7 @@ const gameField = {
   },
 
   setContentCards(activeCard) {
+    playGame.repeatMode = false;
     this.removeContent();
     const container = document.createElement('div');
     container.classList.add('wrapper');

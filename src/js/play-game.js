@@ -14,6 +14,7 @@ const playGame = {
   currentWord: null,
   mistakes: 0,
   wordsUsed: [],
+  repeatMode: false,
 
   init() {
     this.repeat = false;
@@ -80,7 +81,7 @@ const playGame = {
           activeCard.classList.remove('active-card');
 
           currentWord += 1;
-          if (currentWord < 8) {
+          if (currentWord < this.currentWords.length) {
             setTimeout(playWord, 500);
           } else {
             setTimeout(() => {
@@ -132,10 +133,15 @@ const playGame = {
     buttonsFinish.appendChild(mainMenuButton);
 
     newGameButton.addEventListener('click', () => {
-      gameField.setContentCards(gameField.activeCard);
+      if (this.repeatMode) {
+        statistics.repeatDifficultWords();
+      } else {
+        gameField.setContentCards(gameField.activeCard);
+      }
     });
 
     mainMenuButton.addEventListener('click', () => {
+      this.repeatMode = false;
       gameField.setTitleCards();
 
       document.querySelector('.navigation-item.active').classList.remove('active');
