@@ -200,7 +200,6 @@ const statistics = {
     }
     const wrapper = document.createElement('div');
     wrapper.classList.add('wrapper');
-    wrapper.innerHTML += Switcher.render();
     container.appendChild(wrapper);
 
     const cardsContainer = document.createElement('div');
@@ -208,33 +207,41 @@ const statistics = {
 
     const stat = JSON.parse(localStorage.getItem('english-for-kids'));
     const data = this.sortObject(stat, 'wrong').reverse();
-    for (let i = 0; i < 8; i += 1) {
-      if (data[i].wrong !== 0) {
-        const card = new Card(data[i].image, data[i].word, data[i].translation, i);
-        cardsContainer.appendChild(card.render());
+    if (data[0].wrong === 0) {
+      wrapper.innerHTML += '<div class="subtitle">There are no words here yet :-)</div>';
+      setTimeout(() => {
+        document.querySelector('.title').click();
+      }, 2000);
+    } else {
+      wrapper.innerHTML += Switcher.render();
+      for (let i = 0; i < 8; i += 1) {
+        if (data[i].wrong !== 0) {
+          const card = new Card(data[i].image, data[i].word, data[i].translation, i);
+          cardsContainer.appendChild(card.render());
+        }
       }
+      wrapper.appendChild(cardsContainer);
+
+      const input = document.querySelector('input[type=checkbox]');
+      input.addEventListener('change', () => {
+        document.querySelector('.train-mode').classList.toggle('active-mode');
+        document.querySelector('.game-mode').classList.toggle('active-mode');
+        const cards = document.querySelectorAll('.card-word__front-image');
+        if (input.checked) {
+          cards.forEach((card) => {
+            card.style.height = '260px';
+          });
+          playGame.init();
+        } else {
+          cards.forEach((card) => {
+            card.style.height = '200px';
+          });
+
+          document.querySelector('.container .wrapper').removeChild(document.querySelector('.button-play'));
+          document.querySelector('.container .wrapper').removeChild(document.querySelector('.box-stars'));
+        }
+      });
     }
-    wrapper.appendChild(cardsContainer);
-
-    const input = document.querySelector('input[type=checkbox]');
-    input.addEventListener('change', () => {
-      document.querySelector('.train-mode').classList.toggle('active-mode');
-      document.querySelector('.game-mode').classList.toggle('active-mode');
-      const cards = document.querySelectorAll('.card-word__front-image');
-      if (input.checked) {
-        cards.forEach((card) => {
-          card.style.height = '260px';
-        });
-        playGame.init();
-      } else {
-        cards.forEach((card) => {
-          card.style.height = '200px';
-        });
-
-        document.querySelector('.container .wrapper').removeChild(document.querySelector('.button-play'));
-        document.querySelector('.container .wrapper').removeChild(document.querySelector('.box-stars'));
-      }
-    });
   },
 
   resetLocalStorage() {
