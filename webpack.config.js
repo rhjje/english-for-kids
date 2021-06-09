@@ -14,7 +14,7 @@ module.exports = () => {
   const config = {
     devtool: 'inline-source-map',
     entry: {
-      main: [path.resolve(__dirname, './src/js/index.js'), './src/sass/styles.scss']
+      main: [path.resolve(__dirname, './src/js/new-version/index.js'), './src/sass/styles.scss']
     },
     output: {
       filename: 'script.js',
@@ -64,7 +64,12 @@ module.exports = () => {
         }
       ]
     },
-
+    devServer: {
+      contentBase: path.resolve(__dirname, './src/html/'),
+      port: 8000,
+      historyApiFallback: true,
+      hot: true,
+    },
     plugins: [
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
