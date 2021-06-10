@@ -28,9 +28,13 @@
   width: 320px;
   height: 710px;
   border-radius: 0 80px;
+  .navigation-item {
+    transform: scale(1);
+    transition: 1s;
+  }
 }
 
-.modal {
+.burger-menu-bg {
   position: fixed;
   z-index: 15;
   top: 0;
@@ -45,7 +49,7 @@
   }
 }
 
-.modal-disabled {
+.burger-menu-bg_disabled {
   opacity: 0;
   z-index: -1;
 }
@@ -78,12 +82,7 @@
   }
 }
 
-.navigation-item_open {
-  transform: scale(1);
-  transition: 1s;
-}
-
-.navigation-item.active {
+.navigation-item_active {
   a {
     opacity: 1;
     font-weight: 700;

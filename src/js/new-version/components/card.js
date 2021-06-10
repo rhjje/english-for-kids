@@ -32,12 +32,11 @@ export default class Card {
     cardFrontName.classList.add('card-word__front-name');
     cardFrontName.innerText = `${this.word}`;
 
-    const gameMode = document.querySelector('label > input');
-
     this.cardFront.addEventListener('click', (event) => {
-      if (!event.target.classList.contains('reverse-button') && !gameMode.checked) {
+      if (!event.target.classList.contains('reverse-button')) {
         // statistics.countingStatistics(this.word, 'clicks');
-        this.toVoice();
+        const gameMode = document.querySelector('label > input');
+        if (!gameMode.checked) this.toVoice();
       }
     });
 
