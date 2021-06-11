@@ -1,4 +1,4 @@
-// import statistics from '../statistics';
+import { countingStatistics } from '../statistics';
 
 export default class Card {
   constructor(image, word, translation, number) {
@@ -34,7 +34,7 @@ export default class Card {
 
     this.cardFront.addEventListener('click', (event) => {
       if (!event.target.classList.contains('reverse-button')) {
-        // statistics.countingStatistics(this.word, 'clicks');
+        countingStatistics(this.word, 'clicks');
         const gameMode = document.querySelector('label > input');
         if (!gameMode.checked) this.toVoice();
       }

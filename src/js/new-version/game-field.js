@@ -1,7 +1,5 @@
-/* eslint-disable no-param-reassign */
 import Card from './components/card';
-// import Switcher from './components/switch';
-// import playGame from './play-game';
+import { countingStatistics } from './statistics';
 import cards from '../../assets/json/cards.json';
 
 export default class GameField {
@@ -12,11 +10,6 @@ export default class GameField {
     this.wrongAnswer = new Audio('./assets/sounds/error.mp3');
     this.soundWin = new Audio('./assets/sounds/success.mp3');
     this.soundLose = new Audio('./assets/sounds/failure.mp3');
-
-    this.repeat = false;
-    this.currentWords = [];
-    this.wordsUsed = [];
-    this.mistakes = 0;
   }
 
   play() {
@@ -40,7 +33,7 @@ export default class GameField {
       card.addEventListener('click', () => {
         if (card.getAttribute('data-name') === this.currentWords[currentWord]) {
           this.wordsUsed.push(this.currentWords[currentWord]);
-          // statistics.countingStatistics(this.currentWords[currentWord], 'correct');
+          countingStatistics(this.currentWords[currentWord], 'correct');
           this.correctAnswer.play();
           card.style.filter = 'blur(5px)';
 
@@ -60,7 +53,7 @@ export default class GameField {
             }, 1000);
           }
         } else if (!this.wordsUsed.includes(card.getAttribute('data-name'))) {
-          // statistics.countingStatistics(this.currentWords[currentWord], 'wrong');
+          countingStatistics(this.currentWords[currentWord], 'wrong');
           this.mistakes += 1;
           const winStars = document.createElement('img');
           winStars.src = './assets/icons/star.svg';
@@ -120,6 +113,10 @@ export default class GameField {
   }
 
   init(activeCard) {
+    this.repeat = false;
+    this.currentWords = [];
+    this.wordsUsed = [];
+    this.mistakes = 0;
     this.container.innerHTML = '';
     this.activeCard = activeCard;
     // playGame.repeatMode = false;

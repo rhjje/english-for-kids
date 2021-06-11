@@ -1,4 +1,4 @@
-import gameField from './index';
+import router from './router';
 
 export default class MainPage {
   constructor() {
@@ -11,7 +11,7 @@ export default class MainPage {
       4: 'Animal (set A)',
       5: 'Animal (set B)',
       6: 'Clothes',
-      7: 'Emotion',
+      7: 'Emotion'
     };
     this.images = {
       0: './assets/images/categories/actionA.jpg',
@@ -21,7 +21,7 @@ export default class MainPage {
       4: './assets/images/categories/animalA.jpg',
       5: './assets/images/categories/animalB.jpg',
       6: './assets/images/categories/clothes.jpg',
-      7: './assets/images/categories/emotion.jpg',
+      7: './assets/images/categories/emotion.jpg'
     };
     this.links = {
       0: '/action-a',
@@ -31,7 +31,7 @@ export default class MainPage {
       4: '/animal-a',
       5: '/animal-b',
       6: '/clothes',
-      7: '/emotion',
+      7: '/emotion'
     };
   }
 
@@ -57,8 +57,9 @@ export default class MainPage {
     const cards = document.querySelectorAll('.card');
     cards.forEach((card) => {
       card.addEventListener('click', () => {
-        window.history.pushState({}, null, `.${card.getAttribute('data-link')}`);
-        gameField.init(card.getAttribute('data-link').slice(1));
+        router.changeRoute(card.getAttribute('data-link'));
+        // window.history.pushState({}, null, `.${card.getAttribute('data-link')}`);
+        // gameField.init(card.getAttribute('data-link').slice(1));
       });
     });
   }
